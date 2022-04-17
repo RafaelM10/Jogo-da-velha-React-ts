@@ -55,7 +55,8 @@ export default function App() {
     };
 
     const reset = () => {
-      setMarks({})
+      setTurn(marks[0] === "O" ? "X" : "O");
+      setMarks({});
       setWinner(null);
       setDraw(null);
     }
