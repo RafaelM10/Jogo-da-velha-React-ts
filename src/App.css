@@ -26,6 +26,7 @@
     height: 50px;
     
     background-color: burlywood;
+    color: white;
 
     display: flex;
     justify-content: center;
