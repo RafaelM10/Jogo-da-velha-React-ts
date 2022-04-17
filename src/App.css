@@ -19,6 +19,11 @@
 
     flex-wrap: wrap;
     margin: 10px;
+    opacity: 1;
+  }
+
+  .board.gameOver {
+    opacity: 0.3s
   }
 
   .celula {
