@@ -8,12 +8,16 @@ export default function App() {
   const [winner, setWinner] = useState <Players | null> (null);
   const [draw, setDraw] = useState <boolean | null> (null);
   const [marks, setMarks] = useState <{ [key: string]: Players }> ({});
+  const gameOver = !!winner || !!draw;
 
   const getSquare = () => {
     return new Array(9).fill(true);
   }
 
   const play = (index: number) => {
+    if(marks[index] || gameOver) {
+      return;
+    }
 
     setMarks(prev => ({ ...prev, [index]: turn}));
     setTurn(prev => prev === "O" ? "X" : "O");
@@ -61,19 +65,24 @@ export default function App() {
 
       if(winner) {
         setWinner(winner)
+      } else {
+        if(Object.keys(marks).length === 9) {
+          setDraw(true)
+        }
       }
     },[marks])
 
   return (
     <div className="container">
       {winner && <h1>{winner} Ganhou </h1>}
-        {/*
-         <h1>Empate</h1>
-         <button>Jogar novamente</button>
-        */}
-      <p>É a vez de {turn}</p>
 
-      <div className='board'>
+      {draw && <h1>Empate</h1> } 
+        
+      {gameOver && <button onClick={reset}>Jogar novamente</button> }
+      
+      {!gameOver && <p>É a vez de {turn}</p> }
+
+      <div className={`board ${gameOver ? 'gameOver' : null}`}>
       {getSquare().map((_, i) => (
 
         <div className={`celula ${getCellPlayer(i)}`} 
