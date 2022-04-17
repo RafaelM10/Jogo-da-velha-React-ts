@@ -36,3 +36,11 @@
     cursor: pointer;
     border-radius: 5px;
   }
+
+  .celula.O {
+    background-color: #264653;
+  }
+
+  .celula.X {
+    background-color: #264802;
+  }
